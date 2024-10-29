@@ -18,3 +18,5 @@ appVersion: "1.16.0"
 maintainers:
   - email: nasirz1@mskcc.org
     name: Zain Nasir
+
+# TODO: Add Artifact Hub annotations. See https://artifacthub.io/docs/topics/annotations/helm/
