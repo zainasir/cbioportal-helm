@@ -1,0 +1,17 @@
+apiVersion: v1
+entries:
+  cbioportal:
+  - apiVersion: v2
+    appVersion: 6.0.17
+    created: "2024-11-04T19:57:39.719848694Z"
+    description: Helm chart for cbioportal.
+    digest: ae0cacf9785fdbd49c3bfaf5da919b6a3ef1235fd661560c37a2ba0556bf5e8a
+    maintainers:
+    - email: nasirz1@mskcc.org
+      name: Zain Nasir
+    name: cbioportal
+    type: application
+    urls:
+    - https://github.com/cBioPortal/cbioportal-helm/releases/download/cbioportal-0.1.1/cbioportal-0.1.1.tgz
+    version: 0.1.1
+generated: "2024-11-04T19:57:39.719855046Z"
