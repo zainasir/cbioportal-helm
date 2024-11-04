@@ -43,8 +43,14 @@ spec:
       {{- end }}
       containers:
         - envFrom:
+            {{- if .Values.configMapRef.enabled }}
             - configMapRef:
-                name: {{ .Values.container.configMapRef }}
+                name: {{ .Values.configMapRef.ref }}
+            {{- end }}
+            {{- if .Values.secretRef.enabled }}
+            - secretRef:
+                name: {{ .Values.secretRef.ref }}
+            {{- end }}
           {{- if .Values.container.env }}
           env:
             {{- toYaml .Values.container.env | nindent 12 }}
@@ -81,7 +87,7 @@ spec:
           terminationMessagePolicy: {{ .Values.terminationMessagePolicy }}
       # run on eks-public-cbioportal node group
       nodeSelector:
-        eks.amazonaws.com/nodegroup: {{ .Values.nodeGroup }}
+        {{ required ".Values.nodeSelector.key is required!" .Values.nodeSelector.key }}: {{ required ".Values.nodeSelector.value is required!" .Values.nodeSelector.value }}
       {{- if .Values.podTolerations }}
       tolerations:
         {{- toYaml .Values.podTolerations | nindent 8 }}
