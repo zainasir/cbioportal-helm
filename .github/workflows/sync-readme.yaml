@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
     paths:
-      - '/charts/cbioportal/README.md'
+      - 'charts/cbioportal/README.md'
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          cp -f /charts/cbioportal/README.md ${{ runner.temp }}/README.md
+          cp -f charts/cbioportal/README.md ${{ runner.temp }}/README.md
       - uses: actions/checkout@v4
         with:
           ref: gh-pages
