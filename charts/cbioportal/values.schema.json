@@ -23,11 +23,13 @@
     "labels": {
       "description": "(<key>: <value>) pairs that you want to attach as labels to the deployment.",
       "type": "object",
-      "examples": [{
-        "tags.datadoghq.com/env": "datadog-env",
-        "tags.datadoghq.com/service": "datadog-service",
-        "tags.datadoghq.com/version": "datadog-version"
-      }]
+      "examples": [
+        {
+          "tags.datadoghq.com/env": "datadog-env",
+          "tags.datadoghq.com/service": "datadog-service",
+          "tags.datadoghq.com/version": "datadog-version"
+        }
+      ]
     },
     "replicas": {
       "description": "Number of pod replicas",
@@ -84,11 +86,13 @@
     "podLabels": {
       "description": "(<key>: <value>) pairs that you want to attach as labels to the pod.",
       "type": "object",
-      "examples": [{
-        "tags.datadoghq.com/env": "datadog-env",
-        "tags.datadoghq.com/service": "datadog-service",
-        "tags.datadoghq.com/version": "datadog-version"
-      }]
+      "examples": [
+        {
+          "tags.datadoghq.com/env": "datadog-env",
+          "tags.datadoghq.com/service": "datadog-service",
+          "tags.datadoghq.com/version": "datadog-version"
+        }
+      ]
     },
     "configMapRef": {
       "description": "Details of a custom config map. Set 'enabled' to 1 and ref to 'config-map-name'.",
@@ -156,52 +160,55 @@
     "podAnnotations": {
       "description": "Annotations to attach to the Pods.",
       "type": "object"
-      }
-    },
-    "readinessProbe": {
-      "description": "readinessProbe config values.",
-      "type": "object",
-      "required": [
-        "httpGet",
-        "initialDelaySeconds",
-        "timeoutSeconds",
-        "periodSeconds",
-        "failureThreshold"
-      ],
-      "properties": {
-        "httpGet": {
-          "type": "object",
-          "required": [
-            "path",
-            "port"
-          ],
-          "properties": {
-            "path": {
-              "type": "string"
-            },
-            "port": {
-              "type": "integer"
-            }
+    }
+  },
+  "readinessProbe": {
+    "description": "readinessProbe config values.",
+    "type": "object",
+    "required": [
+      "httpGet",
+      "initialDelaySeconds",
+      "timeoutSeconds",
+      "periodSeconds",
+      "failureThreshold"
+    ],
+    "properties": {
+      "httpGet": {
+        "type": "object",
+        "required": [
+          "path",
+          "port"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
           },
-          "examples": [{
+          "port": {
+            "type": "integer"
+          }
+        },
+        "examples": [
+          {
             "path": "/api/health",
             "port": 8080
-          }]
-        },
-        "initialDelaySeconds": {
-          "type": "integer"
-        },
-        "timeoutSeconds": {
-          "type": "integer"
-        },
-        "periodSeconds": {
-          "type": "integer"
-        },
-        "failureThreshold": {
-          "type": "integer"
-        }
+          }
+        ]
       },
-      "examples": [{
+      "initialDelaySeconds": {
+        "type": "integer"
+      },
+      "timeoutSeconds": {
+        "type": "integer"
+      },
+      "periodSeconds": {
+        "type": "integer"
+      },
+      "failureThreshold": {
+        "type": "integer"
+      }
+    },
+    "examples": [
+      {
         "httpGet": {
           "path": "/api/health",
           "port": 8080
@@ -210,52 +217,56 @@
         "timeoutSeconds": 1,
         "periodSeconds": 5,
         "failureThreshold": 3
-      }]
-    },
-    "livenessProbe": {
-      "description": "livenessProbe config values.",
-      "type": "object",
-      "required": [
-        "httpGet",
-        "initialDelaySeconds",
-        "timeoutSeconds",
-        "periodSeconds",
-        "failureThreshold"
-      ],
-      "properties": {
-        "httpGet": {
-          "type": "object",
-          "required": [
-            "path",
-            "port"
-          ],
-          "properties": {
-            "path": {
-              "type": "string"
-            },
-            "port": {
-              "type": "integer"
-            }
+      }
+    ]
+  },
+  "livenessProbe": {
+    "description": "livenessProbe config values.",
+    "type": "object",
+    "required": [
+      "httpGet",
+      "initialDelaySeconds",
+      "timeoutSeconds",
+      "periodSeconds",
+      "failureThreshold"
+    ],
+    "properties": {
+      "httpGet": {
+        "type": "object",
+        "required": [
+          "path",
+          "port"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
           },
-          "examples": [{
+          "port": {
+            "type": "integer"
+          }
+        },
+        "examples": [
+          {
             "path": "/",
             "port": 8080
-          }]
-        },
-        "initialDelaySeconds": {
-          "type": "integer"
-        },
-        "timeoutSeconds": {
-          "type": "integer"
-        },
-        "periodSeconds": {
-          "type": "integer"
-        },
-        "failureThreshold": {
-          "type": "integer"
-        }
+          }
+        ]
       },
-      "examples": [{
+      "initialDelaySeconds": {
+        "type": "integer"
+      },
+      "timeoutSeconds": {
+        "type": "integer"
+      },
+      "periodSeconds": {
+        "type": "integer"
+      },
+      "failureThreshold": {
+        "type": "integer"
+      }
+    },
+    "examples": [
+      {
         "httpGet": {
           "path": "/",
           "port": 8080
@@ -264,130 +275,134 @@
         "timeoutSeconds": 1,
         "periodSeconds": 12,
         "failureThreshold": 5
-      }]
-    },
-    "containerPorts": {
-      "description": "Ports to expose on the container.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "containerPort",
-          "protocol"
-        ],
-        "properties": {
-          "containerPort": {
-            "type": "integer"
-          },
-          "protocol": {
-            "type": "string"
-          }
+      }
+    ]
+  },
+  "containerPorts": {
+    "description": "Ports to expose on the container.",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "containerPort",
+        "protocol"
+      ],
+      "properties": {
+        "containerPort": {
+          "type": "integer"
+        },
+        "protocol": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "containerResources": {
+    "description": "Custom cpu and memory limits.",
+    "type": "object"
+  },
+  "podTolerations": {
+    "description": "Pod tolerations config values.",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "key",
+        "operator",
+        "value",
+        "effect"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "effect": {
+          "type": "string"
         }
       }
     },
-    "containerResources": {
-      "description": "Custom cpu and memory limits.",
-      "type": "object"
-    },
-    "podTolerations": {
-      "description": "Pod tolerations config values.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "key",
-          "operator",
-          "value",
-          "effect"
-        ],
-        "properties": {
-          "key": {
-            "type": "string"
-          },
-          "operator": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "effect": {
-            "type": "string"
-          }
-        }
-      },
-      "examples": [
-        [{
+    "examples": [
+      [
+        {
           "key": "dedicated",
           "operator": "Equal",
           "value": "cbioportal",
           "effect": "NoSchedule"
-        }]
-      ]
-    },
-    "terminationMessagePath": {
-      "type": "string"
-    },
-    "terminationMessagePolicy": {
-      "type": "string"
-    },
-    "dnsPolicy": {
-      "type": "string"
-    },
-    "restartPolicy": {
-      "type": "string"
-    },
-    "schedulerName": {
-      "type": "string"
-    },
-    "securityContext": {
-      "type": "object"
-    },
-    "terminationGracePeriodSeconds": {
-      "type": "integer"
-    },
-    "status": {
-      "type": "object"
-    },
-    "serviceName": {
-      "description": "The name of the service.",
-      "type": "string"
-    },
-    "servicePorts": {
-      "description": "Ports to expose on the service.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "port",
-          "name",
-          "targetPort"
-        ],
-        "properties": {
-          "port": {
-            "type": "integer"
-          },
-          "name": {
-            "type": "string"
-          },
-          "targetPort": {
-            "type": "integer"
-          }
         }
-      },
-      "examples": [
-        [{
+      ]
+    ]
+  },
+  "terminationMessagePath": {
+    "type": "string"
+  },
+  "terminationMessagePolicy": {
+    "type": "string"
+  },
+  "dnsPolicy": {
+    "type": "string"
+  },
+  "restartPolicy": {
+    "type": "string"
+  },
+  "schedulerName": {
+    "type": "string"
+  },
+  "securityContext": {
+    "type": "object"
+  },
+  "terminationGracePeriodSeconds": {
+    "type": "integer"
+  },
+  "status": {
+    "type": "object"
+  },
+  "serviceName": {
+    "description": "The name of the service.",
+    "type": "string"
+  },
+  "servicePorts": {
+    "description": "Ports to expose on the service.",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "port",
+        "name",
+        "targetPort"
+      ],
+      "properties": {
+        "port": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "targetPort": {
+          "type": "integer"
+        }
+      }
+    },
+    "examples": [
+      [
+        {
           "port": 80,
           "name": "http",
           "targetPort": 8080
-        }]
+        }
       ]
-    },
-    "containerArgs": {
-      "type": "array",
-      "title": "The containerArgs Schema",
-      "items": {
-        "type": "string"
-      }
+    ]
+  },
+  "containerArgs": {
+    "type": "array",
+    "title": "The containerArgs Schema",
+    "items": {
+      "type": "string"
     }
   }
 }
