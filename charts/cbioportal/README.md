@@ -2,6 +2,8 @@
 
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cbioportal)](https://artifacthub.io/packages/helm/cbioportal/cbioportal)
 
+> ⚠️ This chart is currently under construction. Releases so far are experimental. See issue [here](https://github.com/cBioPortal/cbioportal/issues/11131).
+
 [cBioPortal](https://cbioportal.org/) is a platform for cancer genomics.
 
 ## Introduction
