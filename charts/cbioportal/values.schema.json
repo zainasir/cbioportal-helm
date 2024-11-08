@@ -1,0 +1,393 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Default values cBioPortal helm chart. Run helm lint to ensure your values match the schema.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Name of the deployment. This is used for pods, services, etc.",
+      "type": "string"
+    },
+    "deploymentAnnotations": {
+      "description": "Annotations to attach to the deployment",
+      "type": "object",
+      "required": [
+        "deployment.kubernetes.io/revision"
+      ],
+      "properties": {
+        "deployment.kubernetes.io/revision": {
+          "type": "string",
+          "default": "4"
+        }
+      }
+    },
+    "labels": {
+      "description": "(<key>: <value>) pairs that you want to attach as labels to the deployment.",
+      "type": "object",
+      "examples": [{
+        "tags.datadoghq.com/env": "datadog-env",
+        "tags.datadoghq.com/service": "datadog-service",
+        "tags.datadoghq.com/version": "datadog-version"
+      }]
+    },
+    "replicas": {
+      "description": "Number of pod replicas",
+      "type": "integer"
+    },
+    "creationTimestamp": {
+      "description": "Creation timestamp for the deployment metadata",
+      "type": "string"
+    },
+    "generation": {
+      "description": "Generation for the deployment metadata.",
+      "type": "integer"
+    },
+    "podVolumes": {
+      "description": "Volumes to attach to the Pod.",
+      "type": "array"
+    },
+    "podVolumeMounts": {
+      "description": "Volume mounts from the pod to the container",
+      "type": "array"
+    },
+    "nodeSelector": {
+      "description": "Label and value of the node on which you want to deploy cbioportal.",
+      "type": "object",
+      "required": [
+        "label",
+        "value"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "rollingUpdate": {
+      "description": "Rolling update configuration.",
+      "type": "object",
+      "required": [
+        "maxSurge",
+        "maxUnavailable"
+      ],
+      "properties": {
+        "maxSurge": {
+          "type": "integer"
+        },
+        "maxUnavailable": {
+          "type": "integer"
+        }
+      }
+    },
+    "podLabels": {
+      "description": "(<key>: <value>) pairs that you want to attach as labels to the pod.",
+      "type": "object",
+      "examples": [{
+        "tags.datadoghq.com/env": "datadog-env",
+        "tags.datadoghq.com/service": "datadog-service",
+        "tags.datadoghq.com/version": "datadog-version"
+      }]
+    },
+    "configMapRef": {
+      "description": "Details of a custom config map. Set 'enabled' to 1 and ref to 'config-map-name'.",
+      "type": "object",
+      "required": [
+        "enabled",
+        "ref"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        }
+      }
+    },
+    "secretRef": {
+      "description": "Details of a custom secret ref. Set 'enabled' to 1 and ref to 'secret-name'.",
+      "type": "object",
+      "required": [
+        "enabled",
+        "ref"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "integer"
+        },
+        "ref": {
+          "type": "string"
+        }
+      }
+    },
+    "container": {
+      "description": "Details about the primary container.",
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "cmd": {
+          "type": "string"
+        },
+        "env": {
+          "description": "Environment variables to expose inside the container.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "value"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "podAnnotations": {
+      "description": "Annotations to attach to the Pods.",
+      "type": "object"
+      }
+    },
+    "readinessProbe": {
+      "description": "readinessProbe config values.",
+      "type": "object",
+      "required": [
+        "httpGet",
+        "initialDelaySeconds",
+        "timeoutSeconds",
+        "periodSeconds",
+        "failureThreshold"
+      ],
+      "properties": {
+        "httpGet": {
+          "type": "object",
+          "required": [
+            "path",
+            "port"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            }
+          },
+          "examples": [{
+            "path": "/api/health",
+            "port": 8080
+          }]
+        },
+        "initialDelaySeconds": {
+          "type": "integer"
+        },
+        "timeoutSeconds": {
+          "type": "integer"
+        },
+        "periodSeconds": {
+          "type": "integer"
+        },
+        "failureThreshold": {
+          "type": "integer"
+        }
+      },
+      "examples": [{
+        "httpGet": {
+          "path": "/api/health",
+          "port": 8080
+        },
+        "initialDelaySeconds": 45,
+        "timeoutSeconds": 1,
+        "periodSeconds": 5,
+        "failureThreshold": 3
+      }]
+    },
+    "livenessProbe": {
+      "description": "livenessProbe config values.",
+      "type": "object",
+      "required": [
+        "httpGet",
+        "initialDelaySeconds",
+        "timeoutSeconds",
+        "periodSeconds",
+        "failureThreshold"
+      ],
+      "properties": {
+        "httpGet": {
+          "type": "object",
+          "required": [
+            "path",
+            "port"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            }
+          },
+          "examples": [{
+            "path": "/",
+            "port": 8080
+          }]
+        },
+        "initialDelaySeconds": {
+          "type": "integer"
+        },
+        "timeoutSeconds": {
+          "type": "integer"
+        },
+        "periodSeconds": {
+          "type": "integer"
+        },
+        "failureThreshold": {
+          "type": "integer"
+        }
+      },
+      "examples": [{
+        "httpGet": {
+          "path": "/",
+          "port": 8080
+        },
+        "initialDelaySeconds": 180,
+        "timeoutSeconds": 1,
+        "periodSeconds": 12,
+        "failureThreshold": 5
+      }]
+    },
+    "containerPorts": {
+      "description": "Ports to expose on the container.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "containerPort",
+          "protocol"
+        ],
+        "properties": {
+          "containerPort": {
+            "type": "integer"
+          },
+          "protocol": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "containerResources": {
+      "description": "Custom cpu and memory limits.",
+      "type": "object"
+    },
+    "podTolerations": {
+      "description": "Pod tolerations config values.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "operator",
+          "value",
+          "effect"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "effect": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": [
+        [{
+          "key": "dedicated",
+          "operator": "Equal",
+          "value": "cbioportal",
+          "effect": "NoSchedule"
+        }]
+      ]
+    },
+    "terminationMessagePath": {
+      "type": "string"
+    },
+    "terminationMessagePolicy": {
+      "type": "string"
+    },
+    "dnsPolicy": {
+      "type": "string"
+    },
+    "restartPolicy": {
+      "type": "string"
+    },
+    "schedulerName": {
+      "type": "string"
+    },
+    "securityContext": {
+      "type": "object"
+    },
+    "terminationGracePeriodSeconds": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "object"
+    },
+    "serviceName": {
+      "description": "The name of the service.",
+      "type": "string"
+    },
+    "servicePorts": {
+      "description": "Ports to expose on the service.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "port",
+          "name",
+          "targetPort"
+        ],
+        "properties": {
+          "port": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "targetPort": {
+            "type": "integer"
+          }
+        }
+      },
+      "examples": [
+        [{
+          "port": 80,
+          "name": "http",
+          "targetPort": 8080
+        }]
+      ]
+    },
+    "containerArgs": {
+      "type": "array",
+      "title": "The containerArgs Schema",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

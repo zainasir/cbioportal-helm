@@ -11,26 +11,20 @@ labels: {}
 # Pod replicas
 replicas: 1
 
-# Deployment self link
-selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/{{ .Values.name }}
-
-# Service self link
-serviceSelfLink: /api/v1/namespaces/default/services/{{ .Values.name }}
-
 # Metadata
 creationTimestamp: "null"
 generation: 1
 
 # Pod volumes
-podVolumes: {}
+podVolumes: []
 
 # Pod Volume Mounts
-podVolumeMounts: {}
+podVolumeMounts: []
 
 # Node group
 nodeSelector:
-  key:
-  value:
+  label: "node-group"
+  value: "cbioportal"
 
 # Pod strategy
 rollingUpdate:
@@ -43,11 +37,11 @@ podLabels: {}
 # Enable/Disable and define configmaps and secrets
 configMapRef:
   enabled: 0
-  ref: {}
+  ref: "custom-config-map"
 
 secretRef:
   enabled: 0
-  ref: {}
+  ref: "custom-secret-ref"
 
 # Primary container
 container:
