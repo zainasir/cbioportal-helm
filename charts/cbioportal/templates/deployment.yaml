@@ -13,7 +13,6 @@ metadata:
     {{- toYaml .Values.labels | nindent 4 }}
     {{- end }}
   name: {{ .Values.name }}
-  selfLink: {{ tpl .Values.selfLink . }}
 spec:
   replicas: {{ .Values.replicas }}
   selector:
@@ -87,7 +86,7 @@ spec:
           terminationMessagePolicy: {{ .Values.terminationMessagePolicy }}
       # run on eks-public-cbioportal node group
       nodeSelector:
-        {{ required ".Values.nodeSelector.key is required!" .Values.nodeSelector.key }}: {{ required ".Values.nodeSelector.value is required!" .Values.nodeSelector.value }}
+        {{ required ".Values.nodeSelector.label is required!" .Values.nodeSelector.value }}: {{ required ".Values.nodeSelector.value is required!" .Values.nodeSelector.value }}
       {{- if .Values.podTolerations }}
       tolerations:
         {{- toYaml .Values.podTolerations | nindent 8 }}
