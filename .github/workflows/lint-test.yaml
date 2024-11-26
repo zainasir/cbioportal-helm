@@ -4,6 +4,7 @@ on: pull_request
 
 jobs:
   lint-test:
+    if: github.repository == 'cBioPortal/cbioportal-helm'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
