@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    if: github.repository == 'cBioPortal/cbioportal-helm'
     permissions:
       contents: write
     runs-on: ubuntu-latest
