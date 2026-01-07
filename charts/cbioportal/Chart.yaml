@@ -33,8 +33,9 @@ annotations:
       url: https://docs.cbioportal.org/deployment/kubernetes/
   artifacthub.io/prerelease: "false"
 
+# Maintainer names below should be valid github/gitbucket usernames for linting to pass. See https://github.com/helm/chart-testing/issues/192
 maintainers:
   - email: nasirz1@mskcc.org
-    name: Zain Nasir
+    name: zainasir
   - email: cbioportal@googlegroups.com
-    name: cBioPortal Team
+    name: cbioportal-devops
