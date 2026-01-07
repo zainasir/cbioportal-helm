@@ -45,7 +45,7 @@ secretRef:
 
 # Primary container
 container:
-  image: cbioportal/cbioportal:6.0.17-web-shenandoah
+  image: cbioportal/cbioportal:6.4.1-web-shenandoah
   cmd: "java"
   env:
     - name: DB_USER
